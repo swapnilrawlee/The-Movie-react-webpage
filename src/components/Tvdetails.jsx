@@ -9,6 +9,7 @@ const Tvdetails = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const { info } = useSelector((state) => state.tv);
+  console.log(info);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(asyncloadtv(id));
@@ -71,30 +72,6 @@ const Tvdetails = () => {
                 />
               ))}
           </div>
-          <div className="rent flex gap-5">
-            <h1>Available on Rent :</h1>
-            {info.watchproviders.results.IN.rent &&
-              info.watchproviders.results.IN &&
-              info.watchproviders.results.IN.rent.map((w) => (
-                <img
-                  title={w.provider_name}
-                  className="w-[5vh] rounded-md object-cover h-[5vh]"
-                  src={`https://image.tmdb.org/t/p/original${w.logo_path}`}
-                />
-              ))}
-          </div>
-          <div className="buy flex gap-5 text-white">
-            <h1>Available to Buy :</h1>
-            {info.watchproviders.results.IN.buy &&
-              info.watchproviders.results.IN &&
-              info.watchproviders.results.IN.buy.map((w) => (
-                <img
-                  title={w.provider_name}
-                  className="w-[5vh] rounded-md object-cover h-[5vh]"
-                  src={`https://image.tmdb.org/t/p/original${w.logo_path}`}
-                />
-              ))}
-          </div>
         </div>
       </div>
 
@@ -106,7 +83,7 @@ const Tvdetails = () => {
             info.detail.original_name ||
             info.detail.original_title}
           <small className="text-l px-2 ">
-            ({info.detail.release_date.split("-")[0]})
+            ({info.detail.first_air_date.split("-")[0]})
           </small>
         </h1>
 
